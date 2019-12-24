@@ -7,7 +7,7 @@
 
 
 export default {
-  name: 'login',
+  name: 'Login',
   components: {
   }
 }

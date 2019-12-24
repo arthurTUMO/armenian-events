@@ -1,5 +1,5 @@
 <template>
-    <div><p>bye</p></div>
+    <p>dgwhsdghj</p>
 </template>
 
 
@@ -8,7 +8,7 @@
 
 
 export default {
-  name: 'events',
+  name: 'Events',
   components: {
   }
 }

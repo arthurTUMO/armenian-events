@@ -1,9 +1,5 @@
 <template>
-<v-row>
-  <v-col>
-    
-  </v-col>
-</v-row>
+<div></div>
 </template>
 
 <script>
@@ -11,7 +7,7 @@
 
 
 export default {
-  name: 'home',
+  name: 'Home',
   components: {
   }
 }
