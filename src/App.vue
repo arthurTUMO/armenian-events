@@ -1,27 +1,19 @@
 <template>
   <v-app>
-    <v-app-bar  app
-    absolute dark
+    <v-app-bar
+      app
+      absolute
+      dark
       color="purple"
       fade-img-on-scroll
-      scroll-target="#scrolling-techniques-3">
+      scroll-target="#scrolling-techniques-3"
+    >
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-     
-      <!-- <v-text-field
-        v-model="search"
-        clearable
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        label="Search"
-      ></v-text-field> -->
+
       <v-toolbar-title class="display-2 font-weight-thin">Armenian Events</v-toolbar-title>
       <v-spacer></v-spacer>
-       <v-row dense>
-       
-
-        <v-col cols="8">
+      <v-row dense>
+        <v-col cols="12">
           <v-text-field
             v-model="search"
             clearable
@@ -33,15 +25,17 @@
           ></v-text-field>
         </v-col>
       </v-row>
-      <v-toolbar-items class="hidden-sm-and-down red">
-        <v-btn color="purple" to="/">Home</v-btn>
-        <v-btn color="purple" to="/about">About</v-btn>
-        <v-btn color="purple" to="/events">Events</v-btn>
-        <v-btn color="purple" to="/login">Login</v-btn>
-      </v-toolbar-items>
+      <template v-slot:extension>
+        <v-tabs align-with-title background-color="transparent" class="hidden-sm-and-down">
+          <v-tab color="purple" to="/">Home</v-tab>
+          <v-tab color="purple" to="/about">About</v-tab>
+          <v-tab color="purple" to="/events">Events</v-tab>
+          <v-tab color="purple" to="/login">Login</v-tab>
+        </v-tabs>
+      </template>
     </v-app-bar>
 
-    <v-navigation-drawer class="hidden-md-and-up" v-model="drawer" app>
+    <v-navigation-drawer disable-resize-watcher class="hidden-md-and-up" v-model="drawer" app>
       <v-list>
         <v-list-item @click="$router.push('/');drawer=false">
           <v-list-item-action>
