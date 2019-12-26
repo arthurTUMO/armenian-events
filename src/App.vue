@@ -1,12 +1,15 @@
 <template>
   <v-app>
     <v-app-bar
-      app
-      absolute
+    absolute
       dark
-      color="purple"
+      shrink-on-scroll
+      prominent
       fade-img-on-scroll
       scroll-target="#scrolling-techniques-3"
+      app
+      color="purple"
+      
     >
       <v-app-bar-nav-icon class="hidden-md-and-up" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
@@ -39,7 +42,7 @@
       <v-list>
         <v-list-item @click="$router.push('/');drawer=false">
           <v-list-item-action>
-            <v-icon>mdi-home-modern</v-icon>
+            <v-icon>mdi-home</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Home</v-list-item-title>
@@ -47,7 +50,7 @@
         </v-list-item>
         <v-list-item @click="$router.push('/about');drawer=false">
           <v-list-item-action>
-            <v-icon>mdi-home-modern</v-icon>
+            <v-icon>mdi-clipboard-text</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>About</v-list-item-title>
@@ -55,7 +58,7 @@
         </v-list-item>
         <v-list-item @click="$router.push('/events');drawer=false">
           <v-list-item-action>
-            <v-icon>mdi-home-modern</v-icon>
+            <v-icon> mdi-calendar-check</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Events</v-list-item-title>
@@ -63,7 +66,7 @@
         </v-list-item>
         <v-list-item @click="$router.push('/login');drawer=false">
           <v-list-item-action>
-            <v-icon>mdi-home-modern</v-icon>
+            <v-icon>mdi-account-box-outline</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Login</v-list-item-title>
