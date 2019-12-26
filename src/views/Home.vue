@@ -1,26 +1,25 @@
 <template>
-  <v-container>
+<div>
     <v-row>
       <v-img class="white--text align-end mb-10" height="600px" src="../assets/back.jpeg"></v-img>
     </v-row>
-    <h2>Main Evenst</h2>
+    <h2 style="color:purple">Main Evenst</h2>
     <hr />
     <v-row justify="center">
-      <v-col cols="3">
-        <v-card max-width="350" hover outlined shaped>
-          <v-img class="white--text align-end" height="150px" src="../assets/card1.jpg"></v-img>
+      <v-col cols="3" v-for="event in events" :key="event.id">
+        <v-card max-width="350" hover outlined shaped >
+          <v-img class="white--text align-end" height="150px" :src="event.img"></v-img>
 
-          <v-card-subtitle class="pb-0">in TUMO</v-card-subtitle>
+          <v-card-subtitle class="pb-0" >{{event.position}}</v-card-subtitle>
 
           <v-card-text class="text--primary">
-            <div>Arthur Kasumyan</div>
-            <div>Get familiar with Vue.js</div>
-            <div>Some node.js skills</div>
+            <div>{{event.host}}</div>
+            <div>{{event.topic}}</div>
+            <div>{{event.description}}</div>
           </v-card-text>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-
             <v-btn to="/" color="purple" text>Learn more</v-btn>
 
             <v-btn icon>
@@ -29,189 +28,115 @@
           </v-card-actions>
         </v-card>
       </v-col>
-      <v-col cols="3">
-        <v-card max-width="350" hover outlined shaped>
-          <v-img class="white--text align-end" height="150px" src="../assets/card5.jpg"></v-img>
-
-          <v-card-subtitle class="pb-0">in Shahumyan square</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>Nemra concert</div>
-            <div>Rock music</div>
-            <div>Christmas mood</div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn to="/" color="purple" text>Learn more</v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-
-      <v-col cols="3">
-        <v-card hover outlined shaped max-width="350">
-          <v-img class="white--text align-end" height="150px" src="../assets/card3.jpg"></v-img>
-
-          <v-card-subtitle class="pb-0">in Marriot hotel</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>React.js</div>
-            <div>Angular.js</div>
-            <div>Some node.js skills</div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn color="purple" text>Learn more</v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-
-      <v-col cols="3">
-        <v-card hover outlined shaped max-width="350">
-          <v-img class="white--text align-end" height="150px" src="../assets/card6.jpg"></v-img>
-
-          <v-card-subtitle class="pb-0">in Barcelona</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>Super Classico</div>
-            <div>For first place</div>
-            <div>Messi vs Bale</div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn color="purple" text>Learn more</v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
     </v-row>
-    <v-row>
-      <v-col cols="3">
-        <v-card hover outlined shaped max-width="350">
-          <v-img class="white--text align-end" height="150px" src="../assets/card7.jpg"></v-img>
+   <v-footer
+   app
+    dark
+    padless
+  >
+    <v-card
+      flat
+      tile
+      class="indigo lighten-1 white--text text-center"
+    >
+      <v-card-text>
+        <v-btn
+          v-for="icon in icons"
+          :key="icon"
+          class="mx-4 white--text"
+          icon
+        >
+          <v-icon size="24px">{{ icon }}</v-icon>
+        </v-btn>
+      </v-card-text>
 
-          <v-card-subtitle class="pb-0">in Opera and Ballet hall</v-card-subtitle>
+      <v-card-text class="white--text pt-0">
+        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+      </v-card-text>
 
-          <v-card-text class="text--primary">
-            <div>Simphony</div>
-            <div>Classical music</div>
-            <div>Philarmonic chor</div>
-          </v-card-text>
+      <v-divider></v-divider>
 
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn color="purple" text>Learn more</v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-      <v-col cols="3">
-        <v-card hover outlined shaped max-width="350">
-          <v-img class="white--text align-end" height="150px" src="../assets/card2.jpg"></v-img>
-
-          <v-card-subtitle class="pb-0">in TUMO</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>Arthin Kasumyan</div>
-            <div>Get familiar with Ruby</div>
-            <div>Ruby on Rails</div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn color="purple" text>Learn more</v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-       <v-col cols="3">
-        <v-card hover outlined shaped max-width="350">
-          <v-img class="white--text align-end" height="150px" src="../assets/card8.jpg"></v-img>
-
-          <v-card-subtitle class="pb-0">in Abovyan 34</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>CEO Adobe</div>
-            <div>Photoshop</div>
-            <div>Illustrator</div>
-          </v-card-text>
-
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn color="purple" text>Learn more</v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-col>
-        <v-col cols="3">
-        <v-card hover outlined shaped max-width="350">
-          <v-img
-            class="white--text align-end"
-            height="150px"
-            src="../assets/card4.jpg"
-          ></v-img>
-
-          <v-card-subtitle class="pb-0">in Hayat hotel</v-card-subtitle>
-
-          <v-card-text class="text--primary">
-            <div>Swift language</div>
-            <div>Swift in Armenia</div>
-            <div>Swift for IOS</div>
-          </v-card-text>
-
-    
-          <v-card-actions>
-            <v-spacer></v-spacer>
-
-            <v-btn color="purple" text>
-              Learn more
-            </v-btn>
-
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-       
-      </v-col>
-    </v-row>
-  </v-container>
+      <v-card-text class="white--text">
+        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
+      </v-card-text>
+    </v-card>
+  </v-footer>
+  </div>
+  
 </template>
 <script>
 export default {
   name: "home",
-  components: {}
-};
+  components: {},
+  data: () => ({
+    events: [
+      {
+        position: "TUMO",
+        id: 1,
+        host: "Arthur Kasumyan",
+        topic: "Get familiar with Vue.js",
+        description: "Some node.js skills",
+        img: require("@/assets/card1.jpg")
+      },
+      {
+        position: "Shahumyan square",
+        id: 2,
+        host: "Nemra concert",
+        topic: "Rock music",
+        description: "Christmas mood",
+        img: require("@/assets/card5.jpg")
+      },
+      {
+        position: "Marriot hotel",
+        id: 3,
+        host: "Galactical Jedis",
+        topic: "Angular.js",
+        description: "Some node.js skills",
+        img: require("@/assets/card3.jpg")
+      },
+      {
+        position: "Barcelona",
+        id: 4,
+        host: "Super Clasico",
+        topic: "For first place",
+        description: "Messi VS Bale",
+        img: require("@/assets/card6.jpg")
+      },
+      {
+        position: "Opera and Ballet hall",
+        id: 5,
+        host: "Simphony",
+        topic: "Classical music",
+        description: "Philarmonic chor",
+        img: require("@/assets/card7.jpg")
+      },
+      {
+        position: "TUMO",
+        id: 6,
+        host: "Arthin Kasumyan",
+        topic: "Get familiar with Ruby",
+        description: "Ruby on Rails",
+        img: require("@/assets/card2.jpg")
+      },
+      {
+        position: "Abovyan 34",
+        id: 7,
+        host: "CEO Adobe",
+        topic: "Photoshop",
+        description: "Illustrator",
+        img: require("@/assets/card8.jpg")
+      },
+      {
+        position: "Hayat hotel",
+        id: 8,
+        host: "Tim Cook",
+        topic: "Swift programming language",
+        description: "Swift for IOS",
+        img: require("@/assets/card4.jpg")
+      }
+    ]
+  })
+}
 </script>
-
-
 
 
