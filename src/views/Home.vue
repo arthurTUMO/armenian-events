@@ -1,5 +1,5 @@
 <template>
-<div>
+  <container>
     <v-row>
       <v-img class="white--text align-end mb-10" height="600px" src="../assets/back.jpeg"></v-img>
     </v-row>
@@ -7,10 +7,10 @@
     <hr />
     <v-row justify="center">
       <v-col cols="3" v-for="event in events" :key="event.id">
-        <v-card max-width="350" hover outlined shaped >
+        <v-card max-width="350" hover outlined shaped>
           <v-img class="white--text align-end" height="150px" :src="event.img"></v-img>
 
-          <v-card-subtitle class="pb-0" >{{event.position}}</v-card-subtitle>
+          <v-card-subtitle class="pb-0">{{event.position}}</v-card-subtitle>
 
           <v-card-text class="text--primary">
             <div>{{event.host}}</div>
@@ -29,8 +29,9 @@
         </v-card>
       </v-col>
     </v-row>
-   <v-footer
-   app
+         <v-footer
+     fixed
+     app
     dark
     padless
   >
@@ -61,13 +62,17 @@
       </v-card-text>
     </v-card>
   </v-footer>
-  </div>
-  
+    <!-- <footer/> -->
+  </container>
 </template>
 <script>
+// import footer from '../../components/footer'
+
 export default {
   name: "home",
-  components: {},
+  components: {
+    // footer
+  },
   data: () => ({
     events: [
       {
@@ -95,11 +100,11 @@ export default {
         img: require("@/assets/card3.jpg")
       },
       {
-        position: "Barcelona",
+        position: "V.Sargsyan stadium",
         id: 4,
-        host: "Super Clasico",
+        host: "Yerevan Derby",
         topic: "For first place",
-        description: "Messi VS Bale",
+        description: "particular match",
         img: require("@/assets/card6.jpg")
       },
       {
@@ -136,7 +141,7 @@ export default {
       }
     ]
   })
-}
+};
 </script>
 
 

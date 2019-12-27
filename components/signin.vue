@@ -4,13 +4,13 @@
          <h1>Sign in</h1>
     <v-form ref="form" @submit.prevent="submit">
         <v-row>
-          <v-col cols="12" sm="3">
+          <v-col cols="12" sm="12">
             <v-text-field
               label="Email"
               required
             ></v-text-field>
           </v-col>
-      <v-col cols="12" sm="3">
+      <v-col cols="12" sm="12">
           <v-text-field
             v-model="password"
             :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
@@ -38,6 +38,7 @@
 
 <script>
 export default {
+  name:"signin",
   data () {
     return {
       show1: false,

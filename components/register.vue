@@ -66,7 +66,7 @@
 
 <script>
 export default {
-  name: 'Register',
+  name: 'register',
   data () {
     return {
       show1: false,
