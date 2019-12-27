@@ -77,146 +77,26 @@
 
 
 <script>
-// @ is an alias to /src
+import axios from 'axios'
 
 export default {
   name: "Events",
   components: {},
   data: () => ({
-    techEvents: [
-      {
-        position: "TUMO",
-        id: 1,
-        host: "Arthur Kasumyan",
-        topic: "Get familiar with Vue.js",
-        description: "Some node.js skills",
-        img: require("@/assets/card1.jpg")
-      },
-      {
-        position: "Marriot hotel",
-        id: 3,
-        host: "Galactical Jedis",
-        topic: "Angular.js",
-        description: "Some node.js skills",
-        img: require("@/assets/card3.jpg")
-      },
-      {
-        position: "Abovyan 34",
-        id: 7,
-        host: "CEO Adobe",
-        topic: "Photoshop",
-        description: "Illustrator",
-        img: require("@/assets/card8.jpg")
-      },
-      {
-        position: "TUMO",
-        id: 6,
-        host: "Arthin Kasumyan",
-        topic: "Get familiar with Ruby",
-        description: "Ruby on Rails",
-        img: require("@/assets/card2.jpg")
-      },
-      {
-        position: "Hayat hotel",
-        id: 8,
-        host: "Tim Cook",
-        topic: "Swift programming language",
-        description: "Swift for IOS",
-        img: require("@/assets/card4.jpg")
-      },
-      {
-        position: "TUMO",
-        id: 9,
-        host: "Dylan Moore",
-        topic: "Python programming language",
-        description: "Python in machine learning",
-        img: require("@/assets/card9.jpg")
-      }
-    ],
-    musicEvents: [
-      {
-        position: "Shahumyan square",
-        id: 2,
-        host: "Nemra concert",
-        topic: "Rock music",
-        description: "Christmas mood",
-        img: require("@/assets/card5.jpg")
-      },
-      {
-        position: "Opera and Ballet hall",
-        id: 5,
-        host: "Simphony",
-        topic: "Classical music",
-        description: "Philarmonic chor",
-        img: require("@/assets/card7.jpg")
-      },
-      {
-        position: "Sport-concert hall ",
-        id: 10,
-        host: "Timati",
-        topic: "RAP music",
-        description: "All best RAP songs",
-        img: require("@/assets/card10.jpg")
-      },
-      {
-        position: "Sport-concert hall ",
-        id: 11,
-        host: "Tigran Smbatyan",
-        topic: "Classical Jackson",
-        description: "Best songs of Jackson",
-        img: require("@/assets/card11.jpg")
-      },
-      {
-        position: "Sport-concert hall ",
-        id: 12,
-        host: "Project LA",
-        topic: "Rock music",
-        description: "Gor Sujyan  and friends",
-        img: require("@/assets/card12.jpg")
-      }
-    ],
-    sportEvents: [
-      {
-        position: "V.Sargsyan stadium",
-        id: 4,
-        host: "Yerevan Derby",
-        topic: "For first place",
-        description: "particular match",
-        img: require("@/assets/card6.jpg")
-      },
-      {
-        position: "Ice hall named I.Rodnina",
-        id: 13,
-        host: "Yerevan municipilaty",
-        topic: "Skate championship",
-        description: "Pretty dancing",
-        img: require("@/assets/card13.jpg")
-      },
-      {
-        position: "Mika sport hall",
-        id: 14,
-        host: "Basketball A league",
-        topic: "Urartu vs Aragats",
-        description: "Hot fight",
-        img: require("@/assets/card14.jpg")
-      },
-      {
-        position: "Ararat sport complex",
-        id: 15,
-        host: "Volleyball A league",
-        topic: "Yerevan vs Hrazdan",
-        description: "Men's final match",
-        img: require("@/assets/card15.jpg")
-      },
-      {
-        position: "Incourt tennis club",
-        id: 16,
-        host: "Armenian tennis champ",
-        topic: "Mkrtchyan vs Abelyan",
-        description: "Men's final match",
-        img: require("@/assets/card16.jpg")
-      }
-    ]
-  })
+    techEvents: null,
+    sportEvents: null,
+    musicEvents: null
+  }),
+  methods: {
+    getAllEvents: async function () {
+      let response = await axios.get('https://armenian-events.herokuapp.com/getAllEvents')
+      this.techEvents = response.data['techEvents']
+      this.sportEvents = response.data['sportEvents']
+      this.musicEvents = response.data['musicEvents']
+    }
+  },
+  created () {
+    this.getAllEvents()
+  }
 };
 </script>

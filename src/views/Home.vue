@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-img class="white--text align-end mb-10" height="600px" src="../assets/back.jpeg"></v-img>
+      <v-img class="white--text align-end mb-10" height="600px" src="back.jpeg"></v-img>
     </v-row>
     <h2 style="color:purple">Main Events</h2>
     <hr />
@@ -32,79 +32,23 @@
   </v-container>
 </template>
 <script>
-
+import axios from 'axios'
 export default {
   name: "home",
   components: {
   },
   data: () => ({
-    events: [
-      {
-        position: "TUMO",
-        id: 1,
-        host: "Arthur Kasumyan",
-        topic: "Get familiar with Vue.js",
-        description: "Some node.js skills",
-        img: require("@/assets/card1.jpg")
-      },
-      {
-        position: "Shahumyan square",
-        id: 2,
-        host: "Nemra concert",
-        topic: "Rock music",
-        description: "Christmas mood",
-        img: require("@/assets/card5.jpg")
-      },
-      {
-        position: "Marriot hotel",
-        id: 3,
-        host: "Galactical Jedis",
-        topic: "Angular.js",
-        description: "Some node.js skills",
-        img: require("@/assets/card3.jpg")
-      },
-      {
-        position: "V.Sargsyan stadium",
-        id: 4,
-        host: "Yerevan Derby",
-        topic: "For first place",
-        description: "particular match",
-        img: require("@/assets/card6.jpg")
-      },
-      {
-        position: "Opera and Ballet hall",
-        id: 5,
-        host: "Simphony",
-        topic: "Classical music",
-        description: "Philarmonic chor",
-        img: require("@/assets/card7.jpg")
-      },
-      {
-        position: "TUMO",
-        id: 6,
-        host: "Arthin Kasumyan",
-        topic: "Get familiar with Ruby",
-        description: "Ruby on Rails",
-        img: require("@/assets/card2.jpg")
-      },
-      {
-        position: "Abovyan 34",
-        id: 7,
-        host: "CEO Adobe",
-        topic: "Photoshop",
-        description: "Illustrator",
-        img: require("@/assets/card8.jpg")
-      },
-      {
-        position: "Hayat hotel",
-        id: 8,
-        host: "Tim Cook",
-        topic: "Swift programming language",
-        description: "Swift for IOS",
-        img: require("@/assets/card4.jpg")
-      }
-    ]
-  })
+    events: null
+  }),
+  methods: {
+    getMainEvents: async function () {
+      let response = await axios.get('https://armenian-events.herokuapp.com/getMainEvents')
+      this.events = response.data['events']
+    }
+  },
+  created () {
+    this.getMainEvents()
+  }
 };
 </script>
 
