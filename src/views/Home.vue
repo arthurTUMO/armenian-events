@@ -1,12 +1,12 @@
 <template>
-  <container>
+  <v-container>
     <v-row>
       <v-img class="white--text align-end mb-10" height="600px" src="../assets/back.jpeg"></v-img>
     </v-row>
-    <h2 style="color:purple">Main Evenst</h2>
+    <h2 style="color:purple">Main Events</h2>
     <hr />
     <v-row justify="center">
-      <v-col cols="3" v-for="event in events" :key="event.id">
+      <v-col cols="9" sm="6" md="4" lg="3" v-for="event in events" :key="event.id">
         <v-card max-width="350" hover outlined shaped>
           <v-img class="white--text align-end" height="150px" :src="event.img"></v-img>
 
@@ -29,49 +29,13 @@
         </v-card>
       </v-col>
     </v-row>
-         <v-footer
-     fixed
-     app
-    dark
-    padless
-  >
-    <v-card
-      flat
-      tile
-      class="indigo lighten-1 white--text text-center"
-    >
-      <v-card-text>
-        <v-btn
-          v-for="icon in icons"
-          :key="icon"
-          class="mx-4 white--text"
-          icon
-        >
-          <v-icon size="24px">{{ icon }}</v-icon>
-        </v-btn>
-      </v-card-text>
-
-      <v-card-text class="white--text pt-0">
-        Phasellus feugiat arcu sapien, et iaculis ipsum elementum sit amet. Mauris cursus commodo interdum. Praesent ut risus eget metus luctus accumsan id ultrices nunc. Sed at orci sed massa consectetur dignissim a sit amet dui. Duis commodo vitae velit et faucibus. Morbi vehicula lacinia malesuada. Nulla placerat augue vel ipsum ultrices, cursus iaculis dui sollicitudin. Vestibulum eu ipsum vel diam elementum tempor vel ut orci. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-      </v-card-text>
-
-      <v-divider></v-divider>
-
-      <v-card-text class="white--text">
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-card-text>
-    </v-card>
-  </v-footer>
-    <!-- <footer/> -->
-  </container>
+  </v-container>
 </template>
 <script>
-// import footer from '../../components/footer'
 
 export default {
   name: "home",
   components: {
-    // footer
   },
   data: () => ({
     events: [

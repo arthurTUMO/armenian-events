@@ -8,16 +8,16 @@
               <v-row>
                 <v-col cols="12" md="6">
                   <v-text-field
-                  :rules="namerules"
-                  v-model="firstname"
+                  :rules="nameRules"
+                  v-model="firstName"
                     label="First name"
                     required
                   ></v-text-field>
                 </v-col>
                 <v-col cols="12" md="6">
                   <v-text-field
-                  :rules="namerules"
-                  v-model="secondname"
+                  :rules="nameRules"
+                  v-model="lastName"
                     label="Last name"
                     required
                   ></v-text-field>
@@ -66,10 +66,15 @@
 
 <script>
 export default {
-  name: 'register',
+  name: 'Register',
   data () {
     return {
       show1: false,
+      firstName: null,
+      lastName: null,
+      email: null,
+      emailConfirmation: null,
+      password: null,
       emailRules: [
         v => !!v || 'Email is required',
         v => /.+@.+/.test(v) || 'E-mail must be valid'
@@ -81,7 +86,7 @@ export default {
         v => /(?=.*\d)/.test(v) || 'Must have one number',
         v => /([!@$%])/.test(v) || 'Must have one special character [!@#$%]'
       ],
-      namerules:[
+      nameRules:[
         v => !!v || 'Name is required'
       ]
     }
