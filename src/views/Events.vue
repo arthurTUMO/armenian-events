@@ -3,7 +3,7 @@
     <h2 style="color:purple">Tech Events</h2>
     <v-row>
       <v-col cols="9" sm="6" md="4" lg="3" v-for="techevent in techEvents" :key="techevent.id">
-        <v-card max-width="350" hover outlined shaped to="/">
+        <v-card max-width="350" hover outlined shaped @click="$router.push({path: `display/${techevent.id}`})">
           <v-img class="white--text align-end" height="150px" :src="techevent.img"></v-img>
 
           <v-card-subtitle class="pb-0">{{techevent.position}}</v-card-subtitle>
@@ -27,7 +27,7 @@
     <h2 style="color:purple">Musical Events</h2>
     <v-row>
       <v-col cols="3" v-for="musicevent in musicEvents" :key="musicevent.id">
-        <v-card max-width="350" hover outlined shaped to="/">
+        <v-card max-width="350" hover outlined shaped @click="$router.push({path: `display/${musicevent.id}`})">
           <v-img class="white--text align-end" height="150px" :src="musicevent.img"></v-img>
 
           <v-card-subtitle class="pb-0">{{musicevent.position}}</v-card-subtitle>
@@ -51,7 +51,7 @@
     <h2 style="color:purple">Sport Events</h2>
     <v-row>
       <v-col cols="3" v-for="sportevent in sportEvents" :key="sportevent.id">
-        <v-card max-width="350" hover outlined shaped to="/">
+        <v-card max-width="350" hover outlined shaped @click="$router.push({path: `display/${sportevent.id}`})">
           <v-img class="white--text align-end" height="150px" :src="sportevent.img"></v-img>
 
           <v-card-subtitle class="pb-0">{{sportevent.position}}</v-card-subtitle>

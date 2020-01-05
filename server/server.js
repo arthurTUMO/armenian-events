@@ -17,6 +17,24 @@ app.use(history({
 // Documentation for connect-history-api-fallback requires this again...
 app.use(serveStatic(path.join(__dirname, '..', '/dist')));
 
+app.get('/getEventInfo/:id', (req, res) => {
+  let response = {
+    eventInfo: {
+      time: new Date(),
+      position: "TUMO",
+      id: 1,
+      host: "Arthur Kasumyan",
+      topic: "Get familiar with Vue.js",
+      description: "Some node.js skills",
+      img: "/card1.jpg",
+      guests: 10
+    }
+  }
+  console.log(response.eventInfo)
+  res.status(200)
+  res.json(response)
+})
+
 app.get('/getMainEvents', (req, res) => {
   console.log('reached endpoint')
   let response = {
