@@ -7,7 +7,7 @@
     <hr />
     <v-row justify="center">
       <v-col cols="11" sm="6" md="4" lg="3" v-for="event in events" :key="event.id">
-        <v-card max-width="350" hover outlined shaped>
+        <v-card max-width="350" hover outlined shaped @click="$router.push({path: `display/${event.id}`})">
           <v-img class="white--text align-end" height="150px" :src="event.img"></v-img>
 
           <v-card-subtitle class="pb-0">{{event.position}}</v-card-subtitle>
@@ -50,7 +50,7 @@ export default {
       }
     },
     getMainEvents: async function () {
-      let response = await axios.get('https://armenian-events.herokuapp.com/getMainEvents')
+      let response = await axios.get('https://arm-events.herokuapp.com/getMainEvents')
       this.events = response.data['events']
     }
   },
