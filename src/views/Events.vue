@@ -1,8 +1,8 @@
 <template>
   <v-container>
     <h2 style="color:purple">Tech Events</h2>
-    <v-row>
-      <v-col cols="9" sm="6" md="4" lg="3" v-for="techevent in techEvents" :key="techevent.id">
+    <v-row justify="center">
+      <v-col cols="11" sm="6" md="4" lg="3" v-for="techevent in techEvents" :key="techevent.id">
         <v-card max-width="350" hover outlined shaped to="/">
           <v-img class="white--text align-end" height="150px" :src="techevent.img"></v-img>
 
@@ -17,16 +17,16 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
+            <v-btn @click.stop="changeColor" icon>
+              <v-icon :color="color">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
     <h2 style="color:purple">Musical Events</h2>
-    <v-row>
-      <v-col cols="3" v-for="musicevent in musicEvents" :key="musicevent.id">
+    <v-row justify="center">
+      <v-col cols="11" sm="6" md="4" lg="3" v-for="musicevent in musicEvents" :key="musicevent.id">
         <v-card max-width="350" hover outlined shaped to="/">
           <v-img class="white--text align-end" height="150px" :src="musicevent.img"></v-img>
 
@@ -41,17 +41,17 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
+            <v-btn @click.stop="changeColor" icon>
+              <v-icon :color="color">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
     <h2 style="color:purple">Sport Events</h2>
-    <v-row>
-      <v-col cols="3" v-for="sportevent in sportEvents" :key="sportevent.id">
-        <v-card max-width="350" hover outlined shaped to="/">
+    <v-row justify="center">
+      <v-col cols="11" sm="6" md="4" lg="3" v-for="sportevent in sportEvents" :key="sportevent.id">
+        <v-card max-width="350" hover outlined shaped>
           <v-img class="white--text align-end" height="150px" :src="sportevent.img"></v-img>
 
           <v-card-subtitle class="pb-0">{{sportevent.position}}</v-card-subtitle>
@@ -65,8 +65,8 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
+            <v-btn @click.stop="sportevent.color = changeColor(sportevent.color)" icon>
+              <v-icon :color="sportevent.color">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -88,6 +88,13 @@ export default {
     musicEvents: null
   }),
   methods: {
+    changeColor (color) {
+      if (color == "grey") {
+        return "red"
+      } else {
+        return "grey"
+      }
+    },
     getAllEvents: async function () {
       let response = await axios.get('https://armenian-events.herokuapp.com/getAllEvents')
       this.techEvents = response.data['techEvents']

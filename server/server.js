@@ -101,7 +101,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Arthur Kasumyan",
         topic: "Get familiar with Vue.js",
         description: "Some node.js skills",
-        img: "card1.jpg"
+        img: "card1.jpg",
+        color: 'grey'
       },
       {
         position: "Marriot hotel",
@@ -109,7 +110,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Galactical Jedis",
         topic: "Angular.js",
         description: "Some node.js skills",
-        img: "card3.jpg"
+        img: "card3.jpg",
+        color: 'grey'
       },
       {
         position: "Abovyan 34",
@@ -117,7 +119,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "CEO Adobe",
         topic: "Photoshop",
         description: "Illustrator",
-        img: "card8.jpg"
+        img: "card8.jpg",
+        color: 'grey'
       },
       {
         position: "TUMO",
@@ -125,7 +128,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Arthin Kasumyan",
         topic: "Get familiar with Ruby",
         description: "Ruby on Rails",
-        img: "card2.jpg"
+        img: "card2.jpg",
+        color: 'grey'
       },
       {
         position: "Hayat hotel",
@@ -133,7 +137,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Tim Cook",
         topic: "Swift programming language",
         description: "Swift for IOS",
-        img: "card4.jpg"
+        img: "card4.jpg",
+        color: 'grey'
       },
       {
         position: "TUMO",
@@ -141,7 +146,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Dylan Moore",
         topic: "Python programming language",
         description: "Python in machine learning",
-        img: "card9.jpg"
+        img: "card9.jpg",
+        color: 'grey'
       }
     ],
     musicEvents: [
@@ -151,7 +157,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Nemra concert",
         topic: "Rock music",
         description: "Christmas mood",
-        img: "card5.jpg"
+        img: "card5.jpg",
+        color: 'grey'
       },
       {
         position: "Opera and Ballet hall",
@@ -159,7 +166,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Simphony",
         topic: "Classical music",
         description: "Philarmonic chor",
-        img: "card7.jpg"
+        img: "card7.jpg",
+        color: 'grey'
       },
       {
         position: "Sport-concert hall ",
@@ -167,7 +175,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Timati",
         topic: "RAP music",
         description: "All best RAP songs",
-        img: "card10.jpg"
+        img: "card10.jpg",
+        color: 'grey'
       },
       {
         position: "Sport-concert hall ",
@@ -175,7 +184,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Tigran Smbatyan",
         topic: "Classical Jackson",
         description: "Best songs of Jackson",
-        img: "card11.jpg"
+        img: "card11.jpg",
+        color: 'grey'
       },
       {
         position: "Sport-concert hall ",
@@ -183,7 +193,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Project LA",
         topic: "Rock music",
         description: "Gor Sujyan  and friends",
-        img: "card12.jpg"
+        img: "card12.jpg",
+        color: 'grey'
       }
     ],
     sportEvents: [
@@ -193,7 +204,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Yerevan Derby",
         topic: "For first place",
         description: "particular match",
-        img: "card6.jpg"
+        img: "card6.jpg",
+        color: 'grey'
       },
       {
         position: "Ice hall named I.Rodnina",
@@ -201,7 +213,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Yerevan municipilaty",
         topic: "Skate championship",
         description: "Pretty dancing",
-        img: "card13.jpg"
+        img: "card13.jpg",
+        color: 'grey'
       },
       {
         position: "Mika sport hall",
@@ -209,7 +222,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Basketball A league",
         topic: "Urartu vs Aragats",
         description: "Hot fight",
-        img: "card14.jpg"
+        img: "card14.jpg",
+        color: 'grey'
       },
       {
         position: "Ararat sport complex",
@@ -217,7 +231,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Volleyball A league",
         topic: "Yerevan vs Hrazdan",
         description: "Men's final match",
-        img: "card15.jpg"
+        img: "card15.jpg",
+        color: 'grey'
       },
       {
         position: "Incourt tennis club",
@@ -225,7 +240,8 @@ app.get('/getAllEvents', (req, res) => {
         host: "Armenian tennis champ",
         topic: "Mkrtchyan vs Abelyan",
         description: "Men's final match",
-        img: "card16.jpg"
+        img: "card16.jpg",
+        color: 'grey'
       }
     ]
   }

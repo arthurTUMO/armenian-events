@@ -6,7 +6,7 @@
     <h2 style="color:purple">Main Events</h2>
     <hr />
     <v-row justify="center">
-      <v-col cols="9" sm="6" md="4" lg="3" v-for="event in events" :key="event.id">
+      <v-col cols="11" sm="6" md="4" lg="3" v-for="event in events" :key="event.id">
         <v-card max-width="350" hover outlined shaped>
           <v-img class="white--text align-end" height="150px" :src="event.img"></v-img>
 
@@ -23,7 +23,7 @@
             <v-btn to="/" color="purple" text>Learn more</v-btn>
 
             <v-btn icon>
-              <v-icon>mdi-heart</v-icon>
+              <v-icon :color="color" @click="changeColor">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
@@ -38,9 +38,17 @@ export default {
   components: {
   },
   data: () => ({
-    events: null
+    events: null,
+    color: "grey"
   }),
   methods: {
+    changeColor () {
+      if (this.color == "grey") {
+        this.color = "red"
+      } else {
+        this.color = "grey"
+      }
+    },
     getMainEvents: async function () {
       let response = await axios.get('https://armenian-events.herokuapp.com/getMainEvents')
       this.events = response.data['events']
@@ -51,5 +59,3 @@ export default {
   }
 };
 </script>
-
-

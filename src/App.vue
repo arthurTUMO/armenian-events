@@ -10,22 +10,20 @@
 
       <v-toolbar-title id="navbar" class="hidden-sm-and-down display-2 font-weight-light">Armenian Events</v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-row align="center" justify="end" dense>
-        <v-slide-x-reverse-transition>
-            <v-text-field
-              v-model="search"
-              clearable
-              flat
-              filled
-              hide-details
-              dark
-              label="Search"
-              v-if="show"
-            ></v-text-field>
-          </v-slide-x-reverse-transition>
-          <v-icon color="white" @click="show = !show">mdi-magnify</v-icon>
-      </v-row>
-      <template v-slot:extension v-show="size > 500" class="hidden-md-and-down">
+      <v-slide-x-reverse-transition>
+        <v-text-field
+          v-model="search"
+          clearable
+          flat
+          filled
+          hide-details
+          dark
+          label="Search"
+          v-if="show"
+        ></v-text-field>
+      </v-slide-x-reverse-transition>
+      <v-icon color="white" @click="show = !show">mdi-magnify</v-icon>
+      <template v-slot:extension class="hidden-sm-and-down">
         <v-tabs align-with-title background-color="transparent" class="hidden-sm-and-down">
           <v-tab color="purple darken-4" to="/">Home</v-tab>
           <v-tab color="purple darken-4" to="/about">About</v-tab>
@@ -91,13 +89,13 @@
     <v-footer
     app
     dark
-    padless
     absolute
+    class="pa-0"
   >
     <v-card
       flat
       tile
-      class="indigo lighten-1 white--text text-center"
+      class="purple darken-4 white--text text-center"
     >
       <v-card-text>
         <v-btn
@@ -138,8 +136,7 @@ export default {
         'mdi-instagram',
       ],
     search: null,
-    show: false,
-    size: window.innerWidth
+    show: false
   })
 };
 </script>
