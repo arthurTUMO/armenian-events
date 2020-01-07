@@ -1,25 +1,22 @@
 <template>
-<v-container>  <v-card>
+<v-container>
     <v-row justify="center" fixed-tabs dark>
       <v-col cols="8">
-        <v-container>
-          <v-tabs color="purple">
-            <v-tab>Register</v-tab>
-            <v-tab-item>
-              <Register />
-            </v-tab-item>
-            <v-tab>Sign In</v-tab>
-            <v-tab-item>
-              <SignIn />
-            </v-tab-item>
-          </v-tabs>
-        </v-container>
+        <v-tabs color="purple">
+          <v-tab>Register</v-tab>
+          <v-tab-item transition="fade-transition" reverse-transition="fade-transition">
+            <Register />
+          </v-tab-item>
+          <v-tab>Sign In</v-tab>
+          <v-tab-item transition="fade-transition" reverse-transition="fade-transition">
+            <SignIn />
+          </v-tab-item>
+        </v-tabs>
       </v-col>
     </v-row>
-  </v-card>
   </v-container>
 
-  
+
 </template>
 
 <script>

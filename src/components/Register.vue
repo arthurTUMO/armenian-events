@@ -2,7 +2,6 @@
     <v-card >
       <v-row  justify="center">
         <v-col cols="8">
-          <v-container>
             <h1>Registration</h1>
             <v-form ref="form" @submit.prevent="submit">
               <v-row>
@@ -24,18 +23,19 @@
                 </v-col>
               </v-row>
               <v-row>
-                <v-col cols="12" md="6">
+                <v-col cols="12">
                   <v-text-field label="Email Address"
                   v-model="email"
                   :rules="emailRules"
                   required></v-text-field>
-
-            <v-text-field label="Confirm Email Address"
-                  v-model="emailConfirmation"
-                  :rules="emailConfirmationRules"
-                  required></v-text-field>
                 </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12">
+              <v-text-field label="Confirm Email Address"
+                    v-model="emailConfirmation"
+                    :rules="emailConfirmationRules"
+                    required></v-text-field>
+              </v-col>
+              <v-col cols="12">
                 <v-text-field
                 error-count="5"
                   v-model="password"
@@ -43,22 +43,17 @@
                   :rules="passwordRules"
                   :type="show1 ? 'text' : 'password'"
                   name="input-10-1"
-                  label="Normal with hint text"
-                  hint="At least 8 characters"
+                  label="Password"
+                  hint="At least 5 characters"
                   counter
                   @click:append="show1 = !show1"
                 ></v-text-field>
               </v-col>
               </v-row>
-              <v-row align="center">
-                <v-col class="text-center" cols="12" sm="4">
-                  <div class="my-2">
-                    <v-btn color="purple" text small>Submit</v-btn>
-                  </div>
-                </v-col>
-              </v-row>
               </v-form>
-            </v-container>
+              <v-card-actions>
+                <v-btn>Submit</v-btn>
+              </v-card-actions>
           </v-col>
         </v-row>
       </v-card>

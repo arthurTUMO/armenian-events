@@ -1,8 +1,8 @@
 <template>
   <div>
-    <v-row v-if="loading" justify="center">
-      <v-col cols="1">
-        <v-progress-circular indeterminate :size="70" :width="7" color="indigo"></v-progress-circular>
+    <v-row v-if="loading" class="text-center" justify="center">
+      <v-col cols="3">
+        <v-progress-circular indeterminate :size="70" :width="7" color="purple darken-4"></v-progress-circular>
       </v-col>
     </v-row>
     <v-card v-if="!loading" class="pa-5">
@@ -50,7 +50,7 @@
         </v-row>
       </v-card-text>
       <v-card-actions>
-        <v-btn rounded color="primary">Check in</v-btn>
+        <v-btn>Check in</v-btn>
       </v-card-actions>
     </v-card>
   </div>

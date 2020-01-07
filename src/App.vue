@@ -81,7 +81,7 @@
     </v-navigation-drawer>
 
     <v-content class="pl=0">
-      <v-container>
+      <v-container class="py-5">
         <router-view></router-view>
       </v-container>
     </v-content>

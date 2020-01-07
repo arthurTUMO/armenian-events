@@ -1,7 +1,12 @@
 <template>
   <v-container>
     <h2 style="color:purple">Tech Events</h2>
-    <v-row justify="center">
+    <v-row v-if="loading" class="text-center" justify="center">
+      <v-col cols="3">
+        <v-progress-circular indeterminate :size="70" :width="7" color="purple darken-4"></v-progress-circular>
+      </v-col>
+    </v-row>
+    <v-row v-if="!loading">
       <v-col cols="11" sm="6" md="4" lg="3" v-for="techevent in techEvents" :key="techevent.id">
         <v-card max-width="350" hover outlined shaped @click="$router.push({path: `display/${techevent.id}`})">
           <v-img class="white--text align-end" height="150px" :src="techevent.img"></v-img>
@@ -17,15 +22,20 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn @click.stop="changeColor" icon>
-              <v-icon :color="color">mdi-heart</v-icon>
+            <v-btn @click.stop="changeColor(techevent)" icon>
+              <v-icon :color="techevent.color">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
     <h2 style="color:purple">Musical Events</h2>
-    <v-row justify="center">
+    <v-row v-if="loading" class="text-center" justify="center">
+      <v-col cols="3">
+        <v-progress-circular indeterminate :size="70" :width="7" color="purple darken-4"></v-progress-circular>
+      </v-col>
+    </v-row>
+    <v-row v-if="!loading">
       <v-col cols="11" sm="6" md="4" lg="3" v-for="musicevent in musicEvents" :key="musicevent.id">
         <v-card max-width="350" hover outlined shaped @click="$router.push({path: `display/${musicevent.id}`})">
           <v-img class="white--text align-end" height="150px" :src="musicevent.img"></v-img>
@@ -41,15 +51,20 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn @click.stop="changeColor" icon>
-              <v-icon :color="color">mdi-heart</v-icon>
+            <v-btn @click.stop="changeColor(musicevent)" icon>
+              <v-icon :color="musicevent.color">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
     </v-row>
     <h2 style="color:purple">Sport Events</h2>
-    <v-row justify="center">
+    <v-row v-if="loading" class="text-center" justify="center">
+      <v-col cols="3">
+        <v-progress-circular indeterminate :size="70" :width="7" color="purple darken-4"></v-progress-circular>
+      </v-col>
+    </v-row>
+    <v-row v-if="!loading">
       <v-col cols="11" sm="6" md="4" lg="3" v-for="sportevent in sportEvents" :key="sportevent.id">
         <v-card max-width="350" hover outlined shaped @click="$router.push({path: `display/${sportevent.id}`})">
           <v-img class="white--text align-end" height="150px" :src="sportevent.img"></v-img>
@@ -65,7 +80,7 @@
           <v-card-actions>
             <v-spacer></v-spacer>
 
-            <v-btn @click.stop="sportevent.color = changeColor(sportevent.color)" icon>
+            <v-btn @click.stop="changeColor(sportevent)" icon>
               <v-icon :color="sportevent.color">mdi-heart</v-icon>
             </v-btn>
           </v-card-actions>
@@ -85,14 +100,15 @@ export default {
   data: () => ({
     techEvents: null,
     sportEvents: null,
-    musicEvents: null
+    musicEvents: null,
+    loading: true
   }),
   methods: {
-    changeColor (color) {
-      if (color == "grey") {
-        return "red"
+    changeColor (event) {
+      if (event.color == "grey") {
+        event.color = "red"
       } else {
-        return "grey"
+        event.color = "grey"
       }
     },
     getAllEvents: async function () {
@@ -100,6 +116,7 @@ export default {
       this.techEvents = response.data['techEvents']
       this.sportEvents = response.data['sportEvents']
       this.musicEvents = response.data['musicEvents']
+      this.loading = false
     }
   },
   created () {
