@@ -78,7 +78,10 @@ export default {
     return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear() + "  " + strTime;
     },
     getEventInfo: async function () {
-      let response = await axios.get('https://arm-events.herokuapp.com/getEventInfo/' + this.$route.params.id)
+      const params = {
+        id: this.$route.params.id
+      }
+      let response = await axios.get('https://arm-events.herokuapp.com/getEventInfo/', { params })
       this.eventInfo = response.data['eventInfo']
       this.eventInfo.time = new Date(this.eventInfo.time)
       this.loading = false

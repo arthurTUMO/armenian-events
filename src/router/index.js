@@ -5,6 +5,7 @@ import Events from '../views/Events.vue'
 import Login from '../views/Login.vue'
 import About from '../views/About.vue'
 import Display from '../views/Display.vue'
+import Submit from '../views/Submit.vue'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/display/:id',
     name: 'display',
     component:Display
+  },
+  {
+    path: '/submit',
+    name: 'submit',
+    component:Submit
   }
 ]
 

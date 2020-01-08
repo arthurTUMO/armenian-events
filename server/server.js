@@ -4,6 +4,7 @@ const cors = require('cors');
 const history = require('connect-history-api-fallback');
 const serveStatic = require('serve-static');
 const path = require("path")
+const pool = require('./database.js')
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,312 +18,141 @@ app.use(history({
 // Documentation for connect-history-api-fallback requires this again...
 app.use(serveStatic(path.join(__dirname, '..', '/dist')));
 
-app.get('/getEventInfo/:id', (req, res) => {
-  let response = {
-    eventInfo: {
-      time: new Date(),
-      position: "TUMO",
-      id: 1,
-      host: "Arthur Kasumyan",
-      topic: "Get familiar with Vue.js",
-      description: "Some node.js skills",
-      img: "/card1.jpg",
-      guests: 10,
-      color: 'grey'
+// function for errors on database connections
+function dbConnError(res, err) {
+  console.error('Error acquiring client', err, err.message, err.stack);
+  res.status(400);
+  res.send(err);
+}
+
+// function for query errors
+function queryError(res, err) {
+  console.log('Query error', err, err.message, err.stack);
+  res.status(400);
+  res.send(err);
+}
+
+app.get('/getEventInfo', (req, res) => {
+  let id = req.query['id']
+  pool.connect(function (err, client, done) {
+    if (err) {
+      dbConnError(res, err);
+      return;
     }
-  }
-  console.log(response.eventInfo)
-  res.status(200)
-  res.json(response)
+    client.query(`SELECT * FROM events WHERE id=${id};`, //do the query
+      (err, resp) => {
+        if (err) {
+          queryError(res, err)
+          return;
+        }
+        if (req.timedout) return
+        console.log(resp.rows)
+        // Successful get request
+        let response = {
+          eventInfo: resp.rows[0]
+        }
+        res.status(200)
+        res.json(response)
+      });
+      client.release()
+  })
 })
 
 app.get('/getMainEvents', (req, res) => {
-  console.log('reached endpoint')
-  let response = {
-    events: [
-      {
-        time: new Date(),
-        position: "TUMO",
-        id: 1,
-        host: "Arthur Kasumyan",
-        topic: "Get familiar with Vue.js",
-        description: "Some node.js skills",
-        img: "card1.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Shahumyan square",
-        id: 2,
-        host: "Nemra concert",
-        topic: "Rock music",
-        description: "Christmas mood",
-        img: "card5.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Marriot hotel",
-        id: 3,
-        host: "Galactical Jedis",
-        topic: "Angular.js",
-        description: "Some node.js skills",
-        img: "card3.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "V.Sargsyan stadium",
-        id: 4,
-        host: "Yerevan Derby",
-        topic: "For first place",
-        description: "particular match",
-        img: "card6.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Opera and Ballet hall",
-        id: 5,
-        host: "Simphony",
-        topic: "Classical music",
-        description: "Philarmonic chor",
-        img: "card7.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "TUMO",
-        id: 6,
-        host: "Arthin Kasumyan",
-        topic: "Get familiar with Ruby",
-        description: "Ruby on Rails",
-        img: "card2.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Abovyan 34",
-        id: 7,
-        host: "CEO Adobe",
-        topic: "Photoshop",
-        description: "Illustrator",
-        img: "card8.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Hayat hotel",
-        id: 8,
-        host: "Tim Cook",
-        topic: "Swift programming language",
-        description: "Swift for IOS",
-        img: "card4.jpg",
-        guests: 10,
-        color: 'grey'
-      }
-    ]
-  }
-  res.status(200)
-  res.json(response)
+  pool.connect(function (err, client, done) {
+    if (err) {
+      dbConnError(res, err);
+      return;
+    }
+    client.query(`SELECT * FROM events WHERE type='main';`, //do the query
+      (err, resp) => {
+        if (err) {
+          queryError(res, err)
+          return;
+        }
+        if (req.timedout) return
+        console.log(resp.rows)
+        // Successful get request
+        let response = {
+          events: resp.rows
+        }
+        res.status(200)
+        res.json(response)
+      });
+      client.release()
+  })
 })
 
 app.get('/getAllEvents', (req, res) => {
-  console.log('reached endpoint')
-  let response = {
-    techEvents: [
-      {
-        time: new Date(),
-        position: "TUMO",
-        id: 1,
-        host: "Arthur Kasumyan",
-        topic: "Get familiar with Vue.js",
-        description: "Some node.js skills",
-        img: "card1.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Marriot hotel",
-        id: 3,
-        host: "Galactical Jedis",
-        topic: "Angular.js",
-        description: "Some node.js skills",
-        img: "card3.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Abovyan 34",
-        id: 7,
-        host: "CEO Adobe",
-        topic: "Photoshop",
-        description: "Illustrator",
-        img: "card8.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "TUMO",
-        id: 6,
-        host: "Arthin Kasumyan",
-        topic: "Get familiar with Ruby",
-        description: "Ruby on Rails",
-        img: "card2.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Hayat hotel",
-        id: 8,
-        host: "Tim Cook",
-        topic: "Swift programming language",
-        description: "Swift for IOS",
-        img: "card4.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "TUMO",
-        id: 9,
-        host: "Dylan Moore",
-        topic: "Python programming language",
-        description: "Python in machine learning",
-        img: "card9.jpg",
-        guests: 10,
-        color: 'grey'
-      }
-    ],
-    musicEvents: [
-      {
-        time: new Date(),
-        position: "Shahumyan square",
-        id: 2,
-        host: "Nemra concert",
-        topic: "Rock music",
-        description: "Christmas mood",
-        img: "card5.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Opera and Ballet hall",
-        id: 5,
-        host: "Simphony",
-        topic: "Classical music",
-        description: "Philarmonic chor",
-        img: "card7.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Sport-concert hall ",
-        id: 10,
-        host: "Timati",
-        topic: "RAP music",
-        description: "All best RAP songs",
-        img: "card10.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Sport-concert hall ",
-        id: 11,
-        host: "Tigran Smbatyan",
-        topic: "Classical Jackson",
-        description: "Best songs of Jackson",
-        img: "card11.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Sport-concert hall ",
-        id: 12,
-        host: "Project LA",
-        topic: "Rock music",
-        description: "Gor Sujyan  and friends",
-        img: "card12.jpg",
-        guests: 10,
-        color: 'grey'
-      }
-    ],
-    sportEvents: [
-      {
-        time: new Date(),
-        position: "V.Sargsyan stadium",
-        id: 4,
-        host: "Yerevan Derby",
-        topic: "For first place",
-        description: "particular match",
-        img: "card6.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Ice hall named I.Rodnina",
-        id: 13,
-        host: "Yerevan municipilaty",
-        topic: "Skate championship",
-        description: "Pretty dancing",
-        img: "card13.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Mika sport hall",
-        id: 14,
-        host: "Basketball A league",
-        topic: "Urartu vs Aragats",
-        description: "Hot fight",
-        img: "card14.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Ararat sport complex",
-        id: 15,
-        host: "Volleyball A league",
-        topic: "Yerevan vs Hrazdan",
-        description: "Men's final match",
-        img: "card15.jpg",
-        guests: 10,
-        color: 'grey'
-      },
-      {
-        time: new Date(),
-        position: "Incourt tennis club",
-        id: 16,
-        host: "Armenian tennis champ",
-        topic: "Mkrtchyan vs Abelyan",
-        description: "Men's final match",
-        img: "card16.jpg",
-        guests: 10,
-        color: 'grey'
-      }
-    ]
-  }
-  res.status(200)
-  res.json(response)
+  pool.connect(function (err, client, done) {
+    if (err) {
+      dbConnError(res, err);
+      return;
+    }
+    client.query(`SELECT * FROM events WHERE type!='main';`, //do the query
+      (err, resp) => {
+        if (err) {
+          queryError(res, err)
+          return;
+        }
+        if (req.timedout) return
+        console.log(resp.rows)
+        // Successful get request
+        let musicEvents = []
+        let sportEvents = []
+        let techEvents = []
+        for(let i = 0; i < resp.rows.length; i++) {
+          if(resp.rows[i].type = 'music') {
+            musicEvents.push(resp.rows[i])
+          } else if (resp.rows[i].type = 'sport') {
+            sportEvents.push(resp.rows[i])
+          } else {
+            techEvents.push(resp.rows[i])
+          }
+        }
+        let response = {
+          musicEvents: musicEvents,
+          sportEvents: sportEvents,
+          techEvents: techEvents
+        }
+        res.status(200)
+        res.json(response)
+      });
+      client.release()
+  })
 })
+
+app.post('/postEvent', async (req, res) => {
+  let topic = req.body.topic
+  let img = req.body.img
+  let host = req.body.host
+  let description = req.body.description
+  let position = req.body.position
+  let type = req.body.type
+
+  let query = `INSERT INTO events(topic, description, img, host, guests, time, position, type) VALUES ('${topic}', '${description}', '${img}', '${host}', 10, to_timestamp(${Date.now()} / 1000.0), '${position}', '${type}') RETURNING id;`
+  console.log(query)
+
+  //connect to the db
+  pool.connect(function (err, client, done) {
+    if (err) {
+      dbConnError(res, err);
+      return;
+    }
+    client.query(query, //do the query
+      (err, resp) => {
+        if (err) {
+          queryError(res, err);
+          return;
+        }
+
+        res.status(200)
+        res.json(resp.rows[0].id)
+      });
+      client.release()
+  });
+});
+
 
 let port = process.env.PORT || 4000;
 
